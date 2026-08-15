@@ -10,10 +10,14 @@ const blogRoutes = require("./routes/blogRoutes");
 const app = express();
 
 connectDB();
+const allowedOrigins = [
+  process.env.CLIENT_URL,
+  "https://blog-platform-4l1r.vercel.app",
+];
 
 app.use(
   cors({
-    origin: process.env.CLIENT_URL,
+    origin: allowedOrigins,
     credentials: true,
   })
 );
