@@ -11,10 +11,12 @@ const app = express();
 
 connectDB();
 
-app.use(cors({
-    origin: "https://blog-platform-1jsn.vercel.app",
+app.use(
+  cors({
+    origin: process.env.CLIENT_URL,
     credentials: true,
-  }));
+  })
+);
 app.use(express.json());
 
 app.get("/", (req, res) => {
