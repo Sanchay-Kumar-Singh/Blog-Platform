@@ -3,7 +3,6 @@
 A full-stack **MERN Blog Platform** built with **MongoDB, Express.js, React.js, and Node.js**, featuring JWT authentication, protected routes, blog management, and a clean frontend/backend architecture.
 
 🌐 **Live Demo:** https://blog-platform-4l1r.vercel.app/
-
 ---
 
 ## ✨ Features
