@@ -1,38 +1,358 @@
-function Footer() {
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import toast from "react-hot-toast";
+
+const Footer = () => {
+  const currentYear = new Date().getFullYear();
+
+  const [email, setEmail] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!email.trim()) {
+      toast.error("Please enter your email.");
+      return;
+    }
+
+    setLoading(true);
+
+    try {
+      const response = await fetch(
+        "https://api.web3forms.com/submit",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: JSON.stringify({
+            access_key: "17067777-eb0c-4d4b-8039-e3b51331296e",
+            subject: "New Blog Newsletter Subscription",
+            email: email,
+            message: `New newsletter subscriber: ${email}`,
+          }),
+        }
+      );
+
+      const result = await response.json();
+
+      if (result.success) {
+        toast.success("Thanks for subscribing!");
+        setEmail("");
+      } else {
+        toast.error("Subscription failed. Please try again.");
+      }
+    } catch (error) {
+      console.error("Newsletter error:", error);
+      toast.error("Something went wrong. Please try again.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const socialLinks = [
+    {
+      name: "GitHub",
+      icon: "GH",
+      href: "https://github.com/Sanchay-Kumar-Singh",
+    },
+    {
+      name: "LinkedIn",
+      icon: "in",
+      href: "https://www.linkedin.com/in/sanchay-kumar-singh-a48155297/",
+    },
+    {
+      name: "Email",
+      icon: "@",
+      href: "mailto:sanchaysingh62425@gmail.com",
+    },
+  ];
+
   return (
-    <footer className="bg-gray-950 text-white mt-20">
-      <div className="max-w-7xl mx-auto px-6 py-14 grid md:grid-cols-3 gap-10">
-        <div>
-          <h2 className="text-xl font-bold mb-3">✦ Blog</h2>
-          <p className="text-gray-400 text-sm">
-            A simple place to write, publish and discover blogs.
-          </p>
-        </div>
+    <footer className="mt-20 bg-gray-950 text-white">
 
-        <div>
-          <h3 className="font-semibold mb-3">Navigate</h3>
-          <div className="space-y-2 text-sm text-gray-400">
-            <p>Home</p>
-            <p>All Blogs</p>
-            <p>Write a Blog</p>
+
+      <div className="max-w-7xl mx-auto px-6 md:px-10 lg:px-12 py-14">
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">
+          <div>
+            <Link
+              to="/"
+              className="inline-flex items-center gap-3 group"
+            >
+              <div
+                className="
+                  w-11 h-11
+                  flex items-center justify-center
+                  rounded-xl
+                  bg-indigo-600
+                  text-white
+                  text-xl
+                  font-bold
+                  group-hover:bg-indigo-500
+                  transition
+                "
+              >
+                ✦
+              </div>
+
+              <div className="text-2xl font-bold">
+                Blog<span className="text-indigo-400">.</span>
+              </div>
+            </Link>
+
+            <p className="mt-5 text-sm text-gray-400 leading-7">
+              A simple place to write, publish, discover, and share
+              meaningful ideas with the world.
+            </p>
+
+          
+            <div className="flex items-center gap-3 mt-6">
+              {socialLinks.map((social) => (
+                <a
+                  key={social.name}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={social.name}
+                  title={social.name}
+                  className="
+                    w-10 h-10
+                    flex items-center justify-center
+                    rounded-xl
+                    border border-gray-800
+                    bg-gray-900
+                    text-gray-400
+                    text-xs
+                    font-bold
+                    hover:bg-indigo-600
+                    hover:border-indigo-600
+                    hover:text-white
+                    transition-all duration-300
+                  "
+                >
+                  {social.icon}
+                </a>
+              ))}
+            </div>
+          </div>
+        
+          <div>
+            <h3 className="text-lg font-semibold mb-5">
+              Navigate
+            </h3>
+
+            <ul className="space-y-3 text-sm">
+
+              <li>
+                <Link
+                  to="/"
+                  className="text-gray-400 hover:text-indigo-400 transition"
+                >
+                  Home
+                </Link>
+              </li>
+
+              <li>
+                <Link
+                  to="/blogs"
+                  className="text-gray-400 hover:text-indigo-400 transition"
+                >
+                  All Blogs
+                </Link>
+              </li>
+
+              <li>
+                <Link
+                  to="/write"
+                  className="text-gray-400 hover:text-indigo-400 transition"
+                >
+                  Write a Blog
+                </Link>
+              </li>
+
+              <li>
+                <Link
+                  to="/dashboard"
+                  className="text-gray-400 hover:text-indigo-400 transition"
+                >
+                  Dashboard
+                </Link>
+              </li>
+
+            </ul>
+          </div>
+          <div>
+            <h3 className="text-lg font-semibold mb-5">
+              Account
+            </h3>
+
+            <ul className="space-y-3 text-sm">
+
+              <li>
+                <Link
+                  to="/login"
+                  className="text-gray-400 hover:text-indigo-400 transition"
+                >
+                  Login
+                </Link>
+              </li>
+
+              <li>
+                <Link
+                  to="/register"
+                  className="text-gray-400 hover:text-indigo-400 transition"
+                >
+                  Register
+                </Link>
+              </li>
+
+              <li>
+                <Link
+                  to="/dashboard"
+                  className="text-gray-400 hover:text-indigo-400 transition"
+                >
+                  My Dashboard
+                </Link>
+              </li>
+
+            </ul>
+          </div>
+
+          <div>
+            <h3 className="text-lg font-semibold mb-5">
+              Stay Updated
+            </h3>
+
+            <p className="text-sm text-gray-400 leading-6 mb-5">
+              Subscribe to receive the latest blogs, ideas, and
+              updates directly in your inbox.
+            </p>
+
+            <form onSubmit={handleSubmit}>
+
+              <div className="flex flex-col gap-3">
+
+                <input
+                  type="email"
+                  required
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="Enter your email"
+                  className="
+                    w-full
+                    px-4
+                    py-3
+                    rounded-xl
+                    bg-gray-900
+                    border border-gray-800
+                    text-white
+                    placeholder:text-gray-600
+                    text-sm
+                    outline-none
+                    focus:border-indigo-500
+                    focus:ring-1
+                    focus:ring-indigo-500
+                    transition
+                  "
+                />
+
+                <button
+                  type="submit"
+                  disabled={loading}
+                  className="
+                    w-full
+                    px-4
+                    py-3
+                    rounded-xl
+                    bg-indigo-600
+                    hover:bg-indigo-500
+                    disabled:opacity-60
+                    disabled:cursor-not-allowed
+                    text-white
+                    text-sm
+                    font-semibold
+                    transition-all
+                    duration-300
+                  "
+                >
+                  {loading ? "Subscribing..." : "Subscribe"}
+                </button>
+
+              </div>
+
+            </form>
+
+            <p className="text-xs text-gray-600 mt-3">
+              No spam. Unsubscribe anytime.
+            </p>
           </div>
         </div>
 
-        <div>
-          <h3 className="font-semibold mb-3">Account</h3>
-          <div className="space-y-2 text-sm text-gray-400">
-            <p>Login</p>
-            <p>Register</p>
-            <p>Dashboard</p>
+     
+        <div className="border-t border-gray-800 mt-14 pt-7">
+
+          <div
+            className="
+              flex
+              flex-col
+              md:flex-row
+              items-center
+              justify-between
+              gap-4
+            "
+          >
+
+            <p className="text-sm text-gray-500 text-center">
+              © {currentYear} Blog Platform. All rights reserved.
+            </p>
+
+            <p className="text-sm text-gray-600">
+              Built with{" "}
+              <span className="text-gray-400 font-medium">
+                MERN Stack
+              </span>
+            </p>
+
+            <button
+              type="button"
+              onClick={() => {
+                window.scrollTo({
+                  top: 0,
+                  behavior: "smooth",
+                });
+              }}
+              aria-label="Back to top"
+              title="Back to top"
+              className="
+                w-10
+                h-10
+                flex
+                items-center
+                justify-center
+                rounded-xl
+                bg-gray-900
+                border border-gray-800
+                text-gray-400
+                text-lg
+                hover:bg-indigo-600
+                hover:border-indigo-600
+                hover:text-white
+                transition-all
+                duration-300
+              "
+            >
+              ↑
+            </button>
+
           </div>
         </div>
-      </div>
 
-      <div className="border-t border-gray-800 text-center py-5 text-sm text-gray-500">
-        © 2026 Blog Platform. Built with MERN.
       </div>
     </footer>
   );
-}
+};
 
 export default Footer;
