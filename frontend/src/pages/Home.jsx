@@ -2,7 +2,12 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import BlogCard from "../components/BlogCard";
 import { useBlog } from "../context/BlogContext";
-
+import {
+  PenLine,
+  Zap,
+  ShieldCheck,
+  Smartphone
+} from "lucide-react";
 function Home() {
   const { blogs, getBlogs } = useBlog();
   const [search, setSearch] = useState("");
@@ -174,47 +179,108 @@ function Home() {
         </section>
       )}
 
-      <section className="bg-gray-50 border-y border-gray-100 mt-24 py-20 px-6">
-        <div className="text-center mb-12">
-          <p className="text-blue-600 text-sm font-semibold mb-2">
-            WHY BLOGNOVA?
-          </p>
+<section className="mt-24 border-y border-gray-200 bg-white px-6 py-24">
+  <div className="max-w-7xl mx-auto">
 
-          <h2 className="text-3xl md:text-4xl font-bold">
-            Everything you need to share ideas.
-          </h2>
+    <div className="grid lg:grid-cols-2 gap-16 items-end mb-16">
+      <div>
+        <p className="text-blue-600 text-sm font-semibold tracking-wider uppercase mb-4">
+          Why BlogNova
+        </p>
 
-          <p className="text-gray-500 mt-3">
-            Simple tools designed for writers and readers.
-          </p>
-        </div>
+        <h2 className="text-4xl md:text-5xl font-bold tracking-tight leading-tight">
+          Everything you need to
+          <span className="text-blue-600"> share what matters.</span>
+        </h2>
+      </div>
 
-        <div className="max-w-5xl mx-auto grid md:grid-cols-4 gap-5">
-          {[
-            ["✍️", "Easy Writing", "Write your ideas in a simple editor."],
-            ["⚡", "Fast Publishing", "Create and publish content quickly."],
-            ["🔒", "Secure Login", "JWT authentication protects your account."],
-            ["📱", "Responsive", "Use the platform on any device."]
-          ].map((item) => (
-            <div
-              key={item[1]}
-              className="bg-white border border-gray-200 rounded-2xl p-6 hover:-translate-y-1 hover:shadow-lg transition"
-            >
-              <div className="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center text-2xl mb-5">
+      <p className="text-gray-500 text-base md:text-lg leading-8 max-w-xl lg:ml-auto">
+        A simple space for writers to create thoughtful content,
+        reach new readers, and turn ideas into something worth sharing.
+      </p>
+    </div>
+
+    <div className="grid md:grid-cols-2 lg:grid-cols-4 border border-gray-200 rounded-2xl overflow-hidden">
+
+      {[
+        [
+          "01",
+          "Write freely",
+          "A clean writing experience that keeps your focus on the story.",
+          PenLine
+        ],
+        [
+          "02",
+          "Publish instantly",
+          "Turn your ideas into published articles without unnecessary steps.",
+          Zap
+        ],
+        [
+          "03",
+          "Built securely",
+          "JWT-based authentication keeps your account and content protected.",
+          ShieldCheck
+        ],
+        [
+          "04",
+          "Read anywhere",
+          "A responsive experience designed for every screen size.",
+          Smartphone
+        ]
+      ].map((item, index) => {
+        const Icon = item[3];
+
+        return (
+          <div
+            key={item[0]}
+            className={`group p-7 md:p-8 bg-white hover:bg-blue-50 transition duration-300 ${
+              index !== 3
+                ? "border-b lg:border-b-0 lg:border-r border-gray-200"
+                : ""
+            }`}
+          >
+
+            <div className="flex items-center justify-between mb-10">
+              <span className="text-sm font-semibold text-blue-600">
                 {item[0]}
+              </span>
+
+              <div className="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition duration-300">
+                <Icon size={19} strokeWidth={1.8} />
               </div>
-
-              <h3 className="font-bold mb-2">
-                {item[1]}
-              </h3>
-
-              <p className="text-gray-500 text-sm leading-relaxed">
-                {item[2]}
-              </p>
             </div>
-          ))}
-        </div>
-      </section>
+
+            <h3 className="text-xl font-semibold mb-3 group-hover:text-blue-600 transition">
+              {item[1]}
+            </h3>
+
+            <p className="text-gray-500 text-sm leading-7">
+              {item[2]}
+            </p>
+
+            <div className="mt-8 text-gray-300 group-hover:text-blue-600 transition">
+              →
+            </div>
+
+          </div>
+        );
+      })}
+
+    </div>
+
+    <div className="mt-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+      <p className="text-sm text-gray-400">
+        Built for writers. Designed for readers.
+      </p>
+
+      <div className="flex items-center gap-2 text-sm text-gray-500">
+        <span className="w-2 h-2 rounded-full bg-blue-600"></span>
+        Simple. Focused. Open.
+      </div>
+    </div>
+
+  </div>
+</section>
     </>
   );
 }
