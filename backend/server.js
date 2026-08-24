@@ -1,5 +1,4 @@
 require("dotenv").config();
-
 const express = require("express");
 const cors = require("cors");
 const connectDB = require("./config/db");
@@ -10,6 +9,7 @@ const blogRoutes = require("./routes/blogRoutes");
 const app = express();
 
 connectDB();
+
 const allowedOrigins = [
   process.env.CLIENT_URL,
   "https://blog-platform-4l1r.vercel.app",
@@ -21,6 +21,7 @@ app.use(
     credentials: true,
   })
 );
+
 app.use(express.json());
 
 app.get("/", (req, res) => {

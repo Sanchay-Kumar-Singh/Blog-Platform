@@ -28,7 +28,7 @@ function Login() {
 
       localStorage.setItem("token", res.data.token);
 
-      navigate("/dashboard");
+      navigate("/");
     } catch (error) {
       setMessage(error.response?.data?.message || "Login failed");
     }

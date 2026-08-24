@@ -24,33 +24,9 @@ function App() {
           <Route path="/blogs/:id" element={<BlogDetails />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-
-          <Route
-            path="/dashboard"
-            element={
-              <ProtectedRoute>
-                <Dashboard />
-              </ProtectedRoute>
-            }
-          />
-
-          <Route
-            path="/write"
-            element={
-              <ProtectedRoute>
-                <WriteBlog />
-              </ProtectedRoute>
-            }
-          />
-
-          <Route
-            path="/edit/:id"
-            element={
-              <ProtectedRoute>
-                <WriteBlog />
-              </ProtectedRoute>
-            }
-          />
+          <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+          <Route path="/write" element={<ProtectedRoute><WriteBlog /></ProtectedRoute>} />
+          <Route path="/edit/:id" element={<ProtectedRoute><WriteBlog /></ProtectedRoute>} />
         </Routes>
       </main>
 

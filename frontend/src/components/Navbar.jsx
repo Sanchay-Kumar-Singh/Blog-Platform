@@ -12,11 +12,11 @@ function Navbar() {
   return (
     <nav className="border-b bg-white">
       <div className="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
-        <Link to="/" className="text-2xl font-bold">
-          ✦ Blog
+        <Link to="/" className="text-3xl font-bold">
+          ✦ Blog<span className="text-blue-600">Nova</span>
         </Link>
 
-        <div className="hidden md:flex items-center gap-7 text-sm">
+        <div className="hidden md:flex items-center gap-7 text-sm md:text-[17px]">
           <Link to="/" className="hover:text-blue-600">Home</Link>
           <Link to="/blogs" className="hover:text-blue-600">Blogs</Link>
 

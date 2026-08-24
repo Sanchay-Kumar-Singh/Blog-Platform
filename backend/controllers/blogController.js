@@ -3,7 +3,6 @@ const Blog = require("../models/Blog");
 const getBlogs = async (req, res) => {
   try {
     const { search, category } = req.query;
-
     let query = {};
 
     if (search) {

@@ -4,7 +4,6 @@ import toast from "react-hot-toast";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
-
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -45,7 +44,6 @@ const Footer = () => {
         toast.error("Subscription failed. Please try again.");
       }
     } catch (error) {
-      console.error("Newsletter error:", error);
       toast.error("Something went wrong. Please try again.");
     } finally {
       setLoading(false);
@@ -71,44 +69,27 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="mt-20 bg-gray-950 text-white">
-
-
-      <div className="max-w-7xl mx-auto px-6 md:px-10 lg:px-12 py-14">
+    <footer className="mt-24 bg-black text-white">
+      <div className="max-w-7xl mx-auto px-6 md:px-10 lg:px-12 py-16">
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">
+
           <div>
-            <Link
-              to="/"
-              className="inline-flex items-center gap-3 group"
-            >
-              <div
-                className="
-                  w-11 h-11
-                  flex items-center justify-center
-                  rounded-xl
-                  bg-indigo-600
-                  text-white
-                  text-xl
-                  font-bold
-                  group-hover:bg-indigo-500
-                  transition
-                "
-              >
+            <Link to="/" className="inline-flex items-center gap-3">
+              <div className="w-10 h-10 flex items-center justify-center rounded-lg bg-blue-600 text-white text-lg font-bold">
                 ✦
               </div>
 
               <div className="text-2xl font-bold">
-                Blog<span className="text-indigo-400">.</span>
+                Blog<span className="text-blue-500">Nova</span>
               </div>
             </Link>
 
-            <p className="mt-5 text-sm text-gray-400 leading-7">
+            <p className="mt-5 text-sm text-gray-400 leading-7 max-w-sm">
               A simple place to write, publish, discover, and share
               meaningful ideas with the world.
             </p>
 
-          
             <div className="flex items-center gap-3 mt-6">
               {socialLinks.map((social) => (
                 <a
@@ -118,171 +99,104 @@ const Footer = () => {
                   rel="noopener noreferrer"
                   aria-label={social.name}
                   title={social.name}
-                  className="
-                    w-10 h-10
-                    flex items-center justify-center
-                    rounded-xl
-                    border border-gray-800
-                    bg-gray-900
-                    text-gray-400
-                    text-xs
-                    font-bold
-                    hover:bg-indigo-600
-                    hover:border-indigo-600
-                    hover:text-white
-                    transition-all duration-300
-                  "
+                  className="w-10 h-10 flex items-center justify-center rounded-lg border border-gray-800 bg-gray-900 text-gray-400 text-xs font-bold hover:bg-blue-600 hover:border-blue-600 hover:text-white transition-all duration-300"
                 >
                   {social.icon}
                 </a>
               ))}
             </div>
           </div>
-        
+
           <div>
-            <h3 className="text-lg font-semibold mb-5">
+            <h3 className="text-sm font-semibold uppercase tracking-wider mb-5">
               Navigate
             </h3>
 
-            <ul className="space-y-3 text-sm">
-
+            <ul className="space-y-4 text-sm">
               <li>
-                <Link
-                  to="/"
-                  className="text-gray-400 hover:text-indigo-400 transition"
-                >
+                <Link to="/" className="text-gray-400 hover:text-blue-500 transition">
                   Home
                 </Link>
               </li>
 
               <li>
-                <Link
-                  to="/blogs"
-                  className="text-gray-400 hover:text-indigo-400 transition"
-                >
+                <Link to="/blogs" className="text-gray-400 hover:text-blue-500 transition">
                   All Blogs
                 </Link>
               </li>
 
               <li>
-                <Link
-                  to="/write"
-                  className="text-gray-400 hover:text-indigo-400 transition"
-                >
+                <Link to="/write" className="text-gray-400 hover:text-blue-500 transition">
                   Write a Blog
                 </Link>
               </li>
 
               <li>
-                <Link
-                  to="/dashboard"
-                  className="text-gray-400 hover:text-indigo-400 transition"
-                >
+                <Link to="/dashboard" className="text-gray-400 hover:text-blue-500 transition">
                   Dashboard
                 </Link>
               </li>
-
             </ul>
           </div>
+
           <div>
-            <h3 className="text-lg font-semibold mb-5">
+            <h3 className="text-sm font-semibold uppercase tracking-wider mb-5">
               Account
             </h3>
 
-            <ul className="space-y-3 text-sm">
-
+            <ul className="space-y-4 text-sm">
               <li>
-                <Link
-                  to="/login"
-                  className="text-gray-400 hover:text-indigo-400 transition"
-                >
+                <Link to="/login" className="text-gray-400 hover:text-blue-500 transition">
                   Login
                 </Link>
               </li>
 
               <li>
-                <Link
-                  to="/register"
-                  className="text-gray-400 hover:text-indigo-400 transition"
-                >
+                <Link to="/register" className="text-gray-400 hover:text-blue-500 transition">
                   Register
                 </Link>
               </li>
 
               <li>
-                <Link
-                  to="/dashboard"
-                  className="text-gray-400 hover:text-indigo-400 transition"
-                >
+                <Link to="/dashboard" className="text-gray-400 hover:text-blue-500 transition">
                   My Dashboard
                 </Link>
               </li>
-
             </ul>
           </div>
 
           <div>
-            <h3 className="text-lg font-semibold mb-5">
-              Stay Updated
+            <p className="text-blue-500 text-xs font-semibold tracking-widest uppercase mb-3">
+              Newsletter
+            </p>
+
+            <h3 className="text-xl font-bold mb-3">
+              Stay updated
             </h3>
 
             <p className="text-sm text-gray-400 leading-6 mb-5">
-              Subscribe to receive the latest blogs, ideas, and
-              updates directly in your inbox.
+              Get the latest articles, ideas, and updates directly in your inbox.
             </p>
 
             <form onSubmit={handleSubmit}>
-
               <div className="flex flex-col gap-3">
-
                 <input
                   type="email"
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Enter your email"
-                  className="
-                    w-full
-                    px-4
-                    py-3
-                    rounded-xl
-                    bg-gray-900
-                    border border-gray-800
-                    text-white
-                    placeholder:text-gray-600
-                    text-sm
-                    outline-none
-                    focus:border-indigo-500
-                    focus:ring-1
-                    focus:ring-indigo-500
-                    transition
-                  "
+                  className="w-full px-4 py-3 rounded-lg bg-gray-900 border border-gray-800 text-white placeholder:text-gray-600 text-sm outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition"
                 />
 
                 <button
                   type="submit"
                   disabled={loading}
-                  className="
-                    w-full
-                    px-4
-                    py-3
-                    rounded-xl
-                    bg-indigo-600
-                    hover:bg-indigo-500
-                    disabled:opacity-60
-                    disabled:cursor-not-allowed
-                    text-white
-                    text-sm
-                    font-semibold
-                    transition-all
-                    duration-300
-                  "
+                  className="w-full px-4 py-3 rounded-lg bg-blue-600 hover:bg-blue-500 disabled:opacity-60 disabled:cursor-not-allowed text-white text-sm font-semibold transition"
                 >
                   {loading ? "Subscribing..." : "Subscribe"}
                 </button>
-
               </div>
-
             </form>
 
             <p className="text-xs text-gray-600 mt-3">
@@ -291,22 +205,11 @@ const Footer = () => {
           </div>
         </div>
 
-     
         <div className="border-t border-gray-800 mt-14 pt-7">
-
-          <div
-            className="
-              flex
-              flex-col
-              md:flex-row
-              items-center
-              justify-between
-              gap-4
-            "
-          >
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
 
             <p className="text-sm text-gray-500 text-center">
-              © {currentYear} Blog Platform. All rights reserved.
+              © {currentYear} BlogNova. All rights reserved.
             </p>
 
             <p className="text-sm text-gray-600">
@@ -326,23 +229,7 @@ const Footer = () => {
               }}
               aria-label="Back to top"
               title="Back to top"
-              className="
-                w-10
-                h-10
-                flex
-                items-center
-                justify-center
-                rounded-xl
-                bg-gray-900
-                border border-gray-800
-                text-gray-400
-                text-lg
-                hover:bg-indigo-600
-                hover:border-indigo-600
-                hover:text-white
-                transition-all
-                duration-300
-              "
+              className="w-10 h-10 flex items-center justify-center rounded-lg bg-gray-900 border border-gray-800 text-gray-400 hover:bg-blue-600 hover:border-blue-600 hover:text-white transition-all duration-300"
             >
               ↑
             </button>
